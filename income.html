@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Income Management</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Poppins", sans-serif;
+            background: #eef3f8;
+        }
+
+        header {
+            background: linear-gradient(to right, #041c32, #064663);
+            color: white;
+            padding: 18px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            font-size: 26px;
+            font-weight: 600;
+            letter-spacing: .5px;
+        }
+
+        .profile-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+        }
+
+        .profile-link img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
+        main {
+            padding: 25px;
+        }
+
+        /* Section Card */
+        .section-box {
+            background: white;
+            padding: 25px;
+            border-radius: 14px;
+            margin-bottom: 25px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Headings */
+        h2 {
+            margin: 0 0 8px 0;
+            font-weight: 600;
+            color: #062b47;
+        }
+
+        /* Inputs */
+        .form-group {
+            margin-bottom: 12px;
+        }
+
+        label {
+            font-weight: 600;
+            color: #062b47;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            background: white;
+            color: #333;
+            outline: none;
+        }
+
+        textarea {
+            resize: none;
+            height: 80px;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border-color: #0b6fa4;
+        }
+
+        /* Button */
+        button {
+            padding: 10px 20px;
+            background: #062b47;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #0b6fa4;
+        }
+
+        .success {
+            color: green;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+
+        /* Filters */
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .filters input,
+        .filters select {
+            width: auto;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        th,
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: #062b47;
+            color: white;
+            text-align: left;
+        }
+
+        .action-btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            color: white;
+        }
+
+        .edit-btn {
+            background: #36A2EB;
+        }
+
+        .delete-btn {
+            background: #FF6384;
+        }
+
+        .action-btn:hover {
+            opacity: .9;
+        }
+    </style>
+    <script src="./assets/js/auth.js"></script>
+    <style>
+        .income-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            margin: 0.5rem 0;
+            background: #f8f9ff;
+            border-radius: 8px;
+            border-left: 4px solid #27ae60;
+        }
+
+        .income-actions button {
+            padding: 0.25rem 0.75rem;
+            margin-left: 0.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .income-actions button:first-child {
+            background: #3498db;
+            color: white;
+        }
+
+        .delete-btn {
+            background: #e74c3c;
+            color: white;
+        }
+
+        #success-msg {
+            display: none;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+    </style>
+    <style>
+        .btn-edit {
+            background: #4CAF50;
+            color: white;
+            padding: 5px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+
+        .btn-delete {
+            background: #f44336;
+            color: white;
+            padding: 5px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .success {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .error {
+            color: #f44336;
+            font-weight: bold;
+        }
+    </style>
+    <style>
+        
+          header {
+            background: linear-gradient(to right, #041c32, #064663);
+            color: white;
+            padding: 18px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        header h1 {
+            font-size: 26px;
+            font-weight: 600;
+            letter-spacing: .5px;
+        }
+
+        .profile-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+        }
+
+        .profile-link img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+
+        /* Add to your CSS file */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: #064663;
+            color: white;
+            position: relative;
+        }
+
+        .profile-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .profile-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .profile-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        #profileIcon {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .dropdown-arrow {
+            width: 16px;
+            height: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            min-width: 180px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            z-index: 1000;
+
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 12px 20px;
+            color: #333;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .dropdown-content a:last-child {
+            border-bottom: none;
+        }
+
+        .dropdown-content a:hover {
+            background: #f8f9ff;
+            color: #667eea;
+            padding-left: 24px;
+        }
+
+        /* Show dropdown on hover */
+        .profile-dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .profile-dropdown:hover .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .dropdown-content {
+                right: 50%;
+                transform: translateX(50%);
+                min-width: 160px;
+            }
+        }
+    </style>
+     <style>
+        .back-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #062b47;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 6px;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background-color: #055174;
+            /* Darker shade */
+            /* transform: scale(1.05); Slight zoom effect */
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="navbar">
+        <h1>Income Management</h1>
+
+        <div class="profile-dropdown">
+            <a href="#" class="profile-link" id="profileLink">
+                <img src="./assets/images/icon2.png" alt="User Icon" id="profileIcon">
+                <span id="profile-text">Hi, User</span>
+                <svg class="dropdown-arrow" viewBox="0 0 24 24">
+                    <path d="M7 10l5 5 5-5z" />
+                </svg>
+            </a>
+
+            <!-- Dropdown Menu -->
+            <div class="dropdown-content" id="profileDropdown">
+                <a href="profile.html">View Profile</a>
+                <a href="#" id="logoutLink">Logout</a>
+            </div>
+        </div>
+    </header>
+
+    <div style="display: flex; justify-content: center; margin-top: 5px;">
+        <a href="/" class="back-btn">
+            Back
+        </a>
+    </div>
+
+    <main>
+
+        <div class="section-box">
+            <h2>Add Income</h2>
+
+            <div id="add-income-form">
+
+                <div class="form-group">
+                    <label>Income Source</label>
+                    <select id="income-source">
+                        <option value="">Select Source</option>
+                        <option value="Salary">Salary</option>
+                        <option value="Bonus">Bonus</option>
+                        option value="Freelance">Freelance</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Income Amount</label>
+                    <input type="number" id="income-amount" placeholder="Enter amount">
+                </div>
+
+                <div class="form-group">
+                    <label>Frequency</label>
+                    <select id="income-frequency">
+                        <option value="">Select Frequency</option>
+                        <option value="Monthly">Monthly</option>
+                        <option value="Weekly">Weekly</option>
+                        <option value="One-time">One-time</option>
+                    </select>
+                </div>
+
+
+
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" id="income-date">
+                </div>
+
+                <div class="form-group">
+                    <label>Description (optional)</label>
+                    <textarea id="income-desc" placeholder="Add description if needed"></textarea>
+                </div>
+
+                <button onclick="addIncome()">Add Income</button>
+                <p id="success-msg" class="success"></p>
+
+            </div>
+        </div>
+
+        <div class="section-box">
+            <h2>Manage Income</h2>
+
+            <div class="filters">
+                <input type="text" id="search" placeholder="Search description..." onkeyup="renderIncome()">
+
+                <select id="filter-source" onchange="renderIncome()">
+                    <option value="">All Sources</option>
+                    <option value="Salary">Salary</option>
+                    <option value="Bonus">Bonus</option>
+                    <option value="Freelance">Freelance</option>
+                    <option value="Other">Other</option>
+                </select>
+
+                <input type="date" id="start-date" onchange="renderIncome()">
+                <input type="date" id="end-date" onchange="renderIncome()">
+            </div>
+
+            <table id="income-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Source</th>
+                        <th>Amount</th>
+                        <th>Frequency</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+        </div>
+
+    </main>
+    <script src="./assets/js/main.js"></script>
+    <script src="./assets/js/income.js"></script>
+</body>
+
+</html>
