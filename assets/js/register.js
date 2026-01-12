@@ -1,5 +1,5 @@
 // register.js - Complete registration handler with validation
-const baseUrl = "https://finance-tracker-silk-mu.vercel.app";
+const baseUrl = "https://track-finance-five.vercel.app";
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('registerForm');
     
