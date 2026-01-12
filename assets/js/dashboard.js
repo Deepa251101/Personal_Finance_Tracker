@@ -1,6 +1,6 @@
 // dashboard.js
 
-const API_URL = "http://localhost:8080/api/v1/dashboard";
+const API_URL = "https://finance-tracker-silk-mu.vercel.app/api/v1/dashboard";
 const userData = localStorage.getItem('user');
 const user = JSON.parse(userData);
 const USER_ID = user.id || 1;
