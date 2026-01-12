@@ -1,5 +1,5 @@
 // expenses.js - COMPLETE CRUD
-const baseUrl = "https://finance-tracker-silk-mu.vercel.app"
+const baseUrl = "https://track-finance-five.vercel.app"
 const EXPENSE_API = baseUrl + '/api/v1/expenses';
 let allExpenses = [];
 let editMode = false;
