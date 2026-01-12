@@ -1,5 +1,5 @@
 // income.js - COMPLETE SOLUTION
-const baseUrl = "http://localhost:8080";
+const baseUrl = "https://finance-tracker-silk-mu.vercel.app";
 const API_BASE = baseUrl+'/api/v1/income';
 let allIncomes = [];
 let editMode = false;
