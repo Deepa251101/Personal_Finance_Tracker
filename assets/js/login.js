@@ -1,5 +1,5 @@
 // login.js - Add this script to your login.html or link it as <script src="login.js"></script>
-const baseUrl = "https://finance-tracker-silk-mu.vercel.app";
+const baseUrl = "https://track-finance-five.vercel.app";
 const url = baseUrl+"/api/v1/auth/login";
 console.log(url);
 
