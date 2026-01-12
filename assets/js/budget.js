@@ -1,5 +1,5 @@
 // budget.js - COMPLETE IMPLEMENTATION
-const baseUrl = "https://finance-tracker-silk-mu.vercel.app"
+const baseUrl = "https://track-finance-five.vercel.app"
 const BUDGET_API = baseUrl+'/api/v1/budgets';
 let allBudgets = [];
 const userData = localStorage.getItem('user');
