@@ -1,5 +1,5 @@
 // transactions.js - SIMPLIFIED VERSION
-const baseUrl = "https://finance-tracker-silk-mu.vercel.app";
+const baseUrl = "https://track-finance-five.vercel.app";
 const TRANSACTIONS_API = baseUrl+'/api/v1/transactions';
 let allTransactions = [];
 let currentPage = 1;
