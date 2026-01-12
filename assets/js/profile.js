@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:8080";
+const baseUrl = "https://finance-tracker-silk-mu.vercel.app";
 const PROFILE_API = baseUrl+'/api/v1/profile';
 const userData = localStorage.getItem('user');
 const user = JSON.parse(userData);
